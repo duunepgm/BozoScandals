@@ -4,12 +4,13 @@
             position: relative;
             text-align: center;
             color: white;
-            display:inline-block;
+            display:block;
             width: 600px;
             height: 400px;
             background-repeat: no-repeat;
             background-size: cover;
             border-radius: 8px;
+            margin: auto;
         }
         
         .bottom-center {
@@ -41,17 +42,34 @@
         .top-text {
             text-shadow: 2px 2px 1px rgba(0,0,0,0.8);
             font-size:45px;
-            color: pink;
+        }
+        .button {
+            margin: auto;
+            text-align: center;
+            display: block;
+            padding: 10px;
         }
 
     </style>
     <head>
         <title>Todos os dias um novo escândalo!</title>
         <script src="js/jquery-3.5.1.min.js"></script>
+        <script src="js/dom-to-image.js"></script>
         <script type="application/javascript">
           $(document).ready(function(){
             var images = [];
-            var scandals = []
+            var scandals = [];
+            var colors = ["white","pink","salmon","coral","tomato","orange","lightyellow","palegoldenrod","khaki","darkseagreen","yellowgreen","olive","greenyellow","turquoise","darkcyan","powderblue","lightblue","skyblue","lavender","plum"];
+
+            getImage = function(){
+                domtoimage.toJpeg(document.getElementById('image'), { quality: 0.95 })
+                    .then(function (dataUrl) {
+                        var link = document.createElement('a');
+                        link.download = 'BomDiaBozo.jpeg';
+                        link.href = dataUrl;
+                        link.click();
+                    });
+            }
             
             $.getJSON("json/bozo.json", function( data ) {
                 $.each(data,function(key,val){
@@ -59,10 +77,10 @@
                         "title": val.title,
                         "url": val.url
                     });
+                });
                 var random_scandal = Math.floor(Math.random() * scandals.length);
                 document.getElementById("scandal_text").innerHTML = scandals[random_scandal].title;
                 document.getElementById("scandal_text").href = scandals[random_scandal].url;
-                });
             });
                 
             $.getJSON("json/images.json", function( data ) {
@@ -71,16 +89,21 @@
                 });
                 var random_img = Math.floor(Math.random() * images.length);
                 document.getElementById("image").style.backgroundImage = 'url("'+images[random_img]+'")';
+             });
 
-            });
+            random_color = Math.floor(Math.random() * colors.length);
+            document.getElementById("morning_text").style.color = colors[random_color];
           });
+          
         </script>
     </head>
     <body>
         <div id="image" class="container">
-            '<!--<img id="image_id" src="" alt="bom dia" style="width:100%;">-->
-            <div class="top-center"><p class="top-text">Bom dia!</p></div>
+            <div class="top-center"><p id="morning_text" class="top-text">Bom dia!</p></div>
             <div class="bottom-center"><a class="bottom-text" id="scandal_text" target="_blank" href="#"></a></div>
+        </div>
+        <div id="download" class="button">
+            <button type="button" id="button" onclick="getImage()">Save</button>
         </div>
     </body>
 </html>
