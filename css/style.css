@@ -1,0 +1,49 @@
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    display:block;
+    width: 600px;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.bottom-center {
+    position: absolute;
+    bottom: 8px;
+    text-align: center;
+    right: 0;
+    left: 0;
+    margin:0 auto;
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.7);
+    font-size:30px;
+    width:80%;
+}
+.top-center {
+    position: absolute;
+    top: 5px;
+    text-align: center;
+    right: 0;
+    left: 0;
+    margin:0 auto;
+    width:80%;
+}
+.bottom-text {
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.7);
+    font-size:30px;
+    color:white;
+    text-decoration: none;
+}
+.top-text {
+    text-shadow: 2px 2px 1px rgba(0,0,0,0.8);
+    font-size:45px;
+}
+.button {
+    margin: auto;
+    text-align: center;
+    display: block;
+    padding: 10px;
+}
