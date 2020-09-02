@@ -31,6 +31,7 @@ $(document).ready(function(){
       });
       var random_img = Math.floor(Math.random() * images.length);
       document.getElementById("image").style.backgroundImage = background_style + ', url("img/'+images[random_img]+'")';
+      document.getElementById("metaimage").setAttribute("content","img/"+images[random_img]);
    });
 
   random_color = Math.floor(Math.random() * colors.length);
